@@ -1,14 +1,14 @@
-import { Link } from 'gatsby';
-import * as React from 'react';
+import * as React from "react";
+import Component1 from "../components/component1";
+import Layout from "../components/layout";
 
 const IndexPage = () => {
   return (
-    <main>
-      <h1>Welcome to my Gatsby site!</h1>
-      <Link to ="/about">About</Link>
+    <><Layout pageTitle="Home Page">
       <p>I'm making this by following the Gatsby Tutorial.</p>
-    </main>
-  )
-}
-export const Head = () => <title>Home Page</title>
+    </Layout>
+  <Component1></Component1></>
+  );
+};
+export const Head = () => <title>Home Page</title>;
 export default IndexPage;
