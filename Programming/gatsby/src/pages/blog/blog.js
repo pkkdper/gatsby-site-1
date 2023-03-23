@@ -1,6 +1,6 @@
 import * as React from "react";
-import Seo from "../components/seo";
-import Layout from "../components/layout";
+import Seo from "../../components/seo";
+import Layout from "../../components/layout";
 import { graphql } from "gatsby";
 const Blog = ({ data }) => {
   return (
