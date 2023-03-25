@@ -1,26 +1,35 @@
-import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
-import Component1 from "../../components/component1";
-import Layout from "../../components/layout";
 import Seo from "../../components/seo";
-
-const IndexPage = () => {
+import Layout from "../../components/layout";
+import { graphql } from "gatsby";
+const Blog = ({ data }) => {
   return (
-    <>
-      <Layout pageTitle="Home Page">
-        <p>I'm making this by following the Gatsby Tut.</p>
-        <StaticImage
-          alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
-          src="https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large"
-        />
-        <StaticImage
-        alt="Clifford, a reddish-brown pitbull, dozing in a bean bag chair"
-        src="../images/pexels-céline-7325997.jpg"
-      />
-      </Layout>
-      <Component1></Component1>
-    </>
+    <Layout pageTitle="My blog posts">
+        {data.allMdx.nodes.map((node) => (
+          <article key={node.id}>
+            <h1>{node.frontmatter.title}</h1>
+            <p>Posted: {node.frontmatter.date}</p>
+            <p>{node.excerpt}</p>
+          </article>
+        ))}
+    </Layout>
   );
 };
-export const Head = () => <Seo title = "homepage"/>;
-export default IndexPage;
+export const query = graphql`
+  query {
+    allMdx(sort: { frontmatter: { date: DESC }}) {
+      nodes {
+        frontmatter {
+          title
+          date(formatString: "MMMM DD, YYYY")
+        }
+        id
+        excerpt
+      }
+    }
+  }
+`
+export const Head = () => {
+  <Seo title="My blog Posts" />;
+};
+export default Blog;
