@@ -7,7 +7,8 @@ module.exports = {
     siteUrl: `https://www.yourdomain.tld`
   },
   plugins: ["gatsby-plugin-google-gtag", `gatsby-plugin-image`,
-  `gatsby-plugin-sharp`,  {
+  `gatsby-plugin-sharp`,      "gatsby-transformer-sharp",
+  {
     resolve: "gatsby-source-filesystem",
     options: {
       name: `blog`,
